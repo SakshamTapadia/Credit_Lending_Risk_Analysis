@@ -1,0 +1,25 @@
+Problem:
+We have customers data and we want to predict whether to give loan or not.
+
+Some terms…
+
+Assets   : All loans, Credit Card
+Liability: Current accounts & saving accounts (CASA), FD, RD, Term Deposit
+
+
+Disbursed amount = Amount given to customer
+OSP = Outstanding principal ( bakaya rashi ) e.g., of loan 1 lakh, if 40k is paid, 60k is OSP
+Amortization = gradually write-down the cost of an intangible asset over its expected period of use
+DPD = Days past due (ideally should be 0)
+PAR = Portfolio at risk (OSP when DPD > 0)
+NPA = Non performing asset (when DPD > 90 days)
+SMA = Special Mention Accounts(SMA) refer to the accounts that show signs of turning into a non-performing asset
+DPD (0) = NDA ( Non Delinquent Account )
+DPD (0 to 30) = SMA1 (standard monitoring accounts)
+DPD (31 to 60) = SMA2 (standard monitoring accounts)
+DPD (61 to 90) = SMA3 (standard monitoring accounts)
+DPD (90 to 180) = NPA
+DPD (> 180) = Written - off (the loan which is not present)
+NPA improve = Loan portfolio quality of the bank will be better = Market sentiments will be good
+GNPA = Gross NPA (in range approx. 3 - 5%) = OSP Default = Exact default amount
+NNPA = Net NPA (in range approx. 0.01 - 0.06%) = GNPA - Some provisioning amount Bank (assess quality is measured by GNPA).
