@@ -5,9 +5,9 @@ import numpy as np
 import base64
 
 
-@st.cache_resource  # 👈 Magic performance booster
+@st.cache  # 👈 Magic performance booster
 def load_model():
-    return joblib.load("models/classifier.pkl")  # Expensive operation
+    return joblib.load("..\models\classifier.pkl")  # Expensive operation
 
 # Set page configuration
 st.set_page_config(
@@ -105,7 +105,7 @@ with col2:
                 # Show complete data with scrollbar
                 st.markdown("### Uploaded Data")
                 st.markdown('<div class="dataframe-container">', unsafe_allow_html=True)
-                st.dataframe(input_df, use_container_width=True, height=200)
+                st.dataframe(input_df, height=200)
                 st.markdown('</div>', unsafe_allow_html=True)
                 
                 # Process for prediction
@@ -126,7 +126,7 @@ with col2:
                         st.markdown("### Prediction Results")
                         st.markdown('<div class="prediction-container">', unsafe_allow_html=True)
                         result_df = pd.DataFrame(prediction, columns=['Prediction'])
-                        st.dataframe(result_df, height=200, use_container_width=True)
+                        st.dataframe(result_df, height=200)
                         st.markdown('</div>', unsafe_allow_html=True)
                     
                     with pred_col2:

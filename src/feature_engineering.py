@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import scipy.stats as st
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from sklearn.preprocessing import LabelEncoder
 
 def select_features(df, target_col):
     """Select relevant features using statistical tests"""
