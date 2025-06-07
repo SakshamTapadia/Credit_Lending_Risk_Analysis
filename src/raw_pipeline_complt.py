@@ -14,6 +14,7 @@ from sklearn.metrics import make_scorer, f1_score
 from imblearn.over_sampling import SMOTE
 from catboost import CatBoostClassifier
 import xgboost as xgb
+import scikit_posthocs as sp
 
 
 # 1. EDA
@@ -360,8 +361,6 @@ plt.show()
 groups = [group['Credit_Score'].values for name, group in df.groupby('Approved_Flag')]
 kruskal_stat, p_val = st.kruskal(*groups)
 print(f"Kruskal-Wallis H-statistic: {kruskal_stat}, p-value: {p_val}")
-
-import scikit_posthocs as sp
 
 # Assuming df is your DataFrame
 print(sp.posthoc_dunn(df, val_col='Credit_Score', group_col='Approved_Flag', p_adjust='bonferroni'))
