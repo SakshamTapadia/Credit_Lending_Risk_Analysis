@@ -3,11 +3,14 @@ import pandas as pd
 import joblib
 import numpy as np
 import base64
+from pathlib import Path
 
 
-@st.cache  # 👈 Magic performance booster
+@st.cache(allow_output_mutation=True)
 def load_model():
-    return joblib.load("..\models\classifier.pkl")  # Expensive operation
+    # Resolve model path relative to this file so it works regardless of working dir
+    model_path = Path(__file__).resolve().parent.parent / "models" / "classifier.pkl"
+    return joblib.load(model_path)
 
 # Set page configuration
 st.set_page_config(
@@ -73,12 +76,13 @@ with col1:
     st.markdown("#### Need a sample file?")
     if st.button("Download Sample Template"):
         try:
-            df = pd.read_csv("sample.csv")
+            sample_path = Path(__file__).resolve().parent / "sample.csv"
+            df = pd.read_csv(sample_path)
             csv = df.to_csv(index=False)
             b64 = base64.b64encode(csv.encode()).decode()
             href = f'<a href="data:file/csv;base64,{b64}" download="sample_template.csv">Click here to download</a>'
             st.markdown(href, unsafe_allow_html=True)
-        except:
+        except Exception:
             st.warning("Sample file not available. Please check the file path.")
     
     st.markdown('</div>', unsafe_allow_html=True)
@@ -89,7 +93,7 @@ with col1:
     st.markdown("""
     - **Model Type**: Categorical Classifier
     - **Prediction Classes**: P1, P2, P3, P4
-    - **File**: cat_classifier.pkl
+    - **File**: classifier.pkl
     """)
     st.markdown('</div>', unsafe_allow_html=True)
 
